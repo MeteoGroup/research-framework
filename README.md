@@ -28,8 +28,9 @@
 
 
   Add a new line in requirements.txt file with library name and version
+  e.g.,
 
-      e.g., Flask==0.11.1
+      Flask==0.11.1
 
 
 ### Setup using Docker:
