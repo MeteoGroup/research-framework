@@ -26,11 +26,7 @@ First install or update to the latest version of [Docker](https://docs.docker.co
     
   Shut down services
 
-    ...
-    
-  Restart services
-  
-    ...
+    docker-compose stop
 
 ### Tools used:
 
