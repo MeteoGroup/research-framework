@@ -51,3 +51,5 @@
   Create database
 
     docker-compose run web /usr/local/bin/python create_db.py
+
+  Should be able access the application here - http://192.168.99.100/

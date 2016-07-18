@@ -3,14 +3,20 @@ import time
 from config import BaseConfig
 
 from flask import Flask, render_template, g
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object(BaseConfig)
+app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 db = SQLAlchemy(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin(origin='*', headers=['Content- Type', 'Authorization'])
 def index():
     return render_template('index.html')
 
@@ -32,14 +38,19 @@ def add_header(response):
     return response
 
 
+@app.errorhandler(403)
+def forbidden_page(error):
+    return render_template("errors/forbidden_page.html"), 403
+
+
 @app.errorhandler(404)
-def page_not_found(e):
-    return "Something went wrong, it's a POC remember :P", 404
+def page_not_found(error):
+    return render_template("errors/page_not_found.html"), 404
 
 
 @app.errorhandler(500)
-def application_error(e):
-    return "Something went wrong, it's a POC remember :P".format(e), 500
+def server_error_page(error):
+    return render_template("errors/server_error.html"), 500
 
 
 if __name__ == '__main__':
