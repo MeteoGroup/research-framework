@@ -8,7 +8,9 @@ First install or update to the latest version of [Docker](https://docs.docker.co
 ### Setup using Docker:
 
 #### Step 1
-  Note: Skip this step for linux machines
+  Note: Skip this step for linux machines.
+  
+  
   Create a docker machine
 
     docker-machine create -d virtualbox dev
