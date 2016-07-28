@@ -3,27 +3,34 @@
 This project is an empty framework for research products to come.
 The advised approach is to setup using Docker.
 
-First install or update to the latest version of [Docker](https://docs.docker.com/engine/installation/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+First install or update to the latest version of [Docker](https://docs.docker.com/engine/installation/)
 
 ### Setup using Docker:
 
+#### Step 1
+  Note: Skip this step for linux machines
   Create a docker machine
 
     docker-machine create -d virtualbox dev
     eval "$(docker-machine env dev)"
 
+  'dev' is the name of the machine created
+#### Step 2
   Build the containers
 
     docker-compose build
 
+#### Step 3
   Start the services
 
     docker-compose up -d
 
+#### Step 4
   Create database
 
-    docker-compose run web /usr/local/bin/python create_db.py
+    docker-compose run --rm web /usr/local/bin/python create_db.py
 
+#### Step 5
   Shut down services
 
     docker-compose stop
